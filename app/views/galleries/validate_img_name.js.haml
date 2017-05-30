@@ -1,0 +1,8 @@
+- if @name.present?
+  $("#gallery_name").css("border-color", "red")
+  $(".img-name-btn").attr('disabled','disabled');
+  $(".err-text").css("color", "red").html("Already taken");
+- else
+  $("#gallery_name").css("border-color", "green")
+  $(".img-name-btn").removeAttr('disabled');
+  $(".err-text").css("color", "green").html("Available");

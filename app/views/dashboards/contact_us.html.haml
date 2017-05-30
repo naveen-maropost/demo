@@ -1,0 +1,30 @@
+.container
+  .row
+    .col-md-6
+      = form_for(@contact_detail, url: submit_contact_dashboards_path(@contact_detail), class: "form-horizontal") do |f|
+        - if @contact_detail.errors.any?
+          #error_explanation
+            %h2
+              = pluralize(@contact_detail.errors.count, "error")
+              prohibited this contact_detail from being saved:
+            %ul
+              - @contact_detail.errors.full_messages.each do |msg|
+                %li= msg
+
+        .form-group
+          %label.control-label Name
+          = f.text_field :name, placeholder: "enter name", class: "form-control"
+        .form-group
+          = f.label :email, class: "control-label"
+          = f.text_field :email, placeholder: "enter email", class: "form-control"
+        .form-group
+          = f.label :mobile_number, class: "control-label"
+          = f.number_field :mobile_number, placeholder: "enter mobile number", class: "form-control"
+        .form-group
+          = f.label :description, class: "control-label"
+          = f.text_area :description, placeholder: "enter description", class: "form-control"
+          .actions
+            = f.submit "Submit", class: "btn btn-primary"
+    .col-md-6
+      %iframe{:allowfullscreen => "", :frameborder => "0", :height => "450", :src => "https://www.google.com/maps/embed/v1/place?key=AIzaSyD1CbKGlDXYpnHlsB_R0lMspnkMdQCddUI\n    &q=Maropost, University Avenue, Toronto, ON, Canada", :style => "border:0", :width => "600"}
+

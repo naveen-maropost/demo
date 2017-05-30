@@ -1,3 +1,20 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  devise_for :users
+  root 'dashboards#index'
+  resource :dashboards do
+    collection do
+      get :about_us
+      get :contact_us
+      post :submit_contact
+    end
+  end
+
+  resources :galleries do
+    collection do
+      post :validate_img_name
+    end
+  end
 end
