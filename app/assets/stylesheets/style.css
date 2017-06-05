@@ -1,6 +1,10 @@
+
 .image_container {
-  width: 1300px;
-  height: 250px
+  width: 500px;
+  height: 250px;
+  margin-left: -35px;
+  padding-top: 30px;
+  margin-bottom: -25px;
 }
 .padd0 {
   padding: 0px !important;
@@ -13,10 +17,10 @@
   padding-left: 10px;
   padding-right: 10px;
 }
-
 .margin5 {
   margin-right: 5px;
   margin-left: 5px;
+  margin-bottom: 5px;
 }
 .margin10{
   margin-right: 10px;
@@ -24,10 +28,25 @@
   margin-bottom: 10px;
 }
 .margin20{
-
   margin-right: 20px;
   margin-left: 20px;
 }
 .err-text{
   padding-top: 45px;
+}
+.ad-img{
+  margin-left: -55px;
+  margin-top: 8px;
+}
+.import-input{
+  margin-left: -9px;
+  margin-top: 20px;
+}
+.import-submit{
+  margin-left: 30px;
+  margin-bottom: 10px;
+}
+.btn-block {
+    display: block;
+    width: 69%;
 }

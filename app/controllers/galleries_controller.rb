@@ -1,7 +1,6 @@
 class GalleriesController < ApplicationController
-  def index
-    @galleries = Gallery.all.page(params[:page]).per(6)
-  end
+  before_action :authenticate_user!
+  before_action :get_gallery_collection, only: [:index, :destroy]
 
   def new
   	@gallery = Gallery.new
@@ -10,7 +9,8 @@ class GalleriesController < ApplicationController
   def create
   	@gallery = Gallery.new(gallery_params)
   	if @gallery.save
-      redirect_to galleries_path, notice: 'Picture saved successfully!!!'
+      flash[:success] = 'Picture saved successfully!!!'
+      redirect_to galleries_path
     else
       render action: 'new'
     end
@@ -21,9 +21,10 @@ class GalleriesController < ApplicationController
   end
 
   def update
-    @gallery = Gallery.find_by(id: params[:id])
-    if @gallery.update(gallery_params)
-      redirect_to galleries_path, notice: 'Picture Updated Successfully!!!'
+    gallery = Gallery.find_by(id: params[:id])
+    if gallery.update(gallery_params)
+      flash[:success] = 'Picture Updated Successfully!!!'
+      redirect_to galleries_path
     else
       render action: 'edit'
     end
@@ -31,6 +32,28 @@ class GalleriesController < ApplicationController
 
   def validate_img_name
     @name = Gallery.where("name LIKE ?", "%#{params[:name]}%")
+  end
+
+  def destroy
+    gallery = Gallery.find_by(id: params[:id])
+    gallery.destroy if gallery
+  end
+
+  def get_gallery_collection
+    @galleries = Gallery.all.order('created_at DESC').page(params[:page]).per(6)
+  end
+
+  def import
+    begin
+      @resp = Gallery.import(params[:file])
+      binding.pry
+      flash[:success] = 'Gallery imported successfully.!'
+      redirect_to galleries_path
+    rescue
+      binding.pry
+      flash[:error] = 'Something wrong with CSV file'
+      redirect_to galleries_path
+    end
   end
 
   

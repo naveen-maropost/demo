@@ -1,5 +1,6 @@
 .container
-  = image_tag "/assets/maropost-img", class: "image_container text-center"
+  %marquee{:direction => "down"}
+    = image_tag "/assets/maropost-img", class: "image_container text-center"
   %h2 We Are Maropost
   %p
     We make the world's best marketing and sales platforms

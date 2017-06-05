@@ -11,7 +11,7 @@
             .col-md-9
               .form-group
                 %label.control-label Name
-                = f.text_field :name, class: "form-control img-name"
+                = f.text_field :name, autocomplete: "off", class: "form-control img-name"
             .col-md-3
               %p.err-text
           .modal-footer

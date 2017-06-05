@@ -4,16 +4,13 @@
       = form_for(@gallery, class: "form-horizontal") do |f|
         - if @gallery.errors.any?
           #error_explanation
-            %h2
-              = pluralize(@gallery.errors.count, "error")
-              prohibited this gallery from being saved:
             %ul
-              - @gallery.errors.full_messages.each do |msg|
-                %li= msg
+              - @gallery.errors.messages.each do |k, v|
+                %li= v[0]
 
         .form-group
           %label.control-label Name
-          = f.text_field :name, placeholder: "enter name", class: "form-control"
+          = f.text_field :name, placeholder: "enter name", autocomplete: "off", class: "form-control"
         .form-group
           = f.label :attachment, class: "control-label"
           = f.file_field :attachment, class: "form-control"

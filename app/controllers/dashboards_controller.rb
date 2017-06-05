@@ -11,7 +11,8 @@ class DashboardsController < ApplicationController
   def submit_contact
   	@contact_detail = ContactDetail.new(contact_details_params)
   	if @contact_detail.save
-      redirect_to root_path, notice: 'Thank you for letting us know!!!'
+      flash[:success] = 'Thank you for letting us know!!!'
+      redirect_to root_path
     else
       render action: 'contact_us'
     end

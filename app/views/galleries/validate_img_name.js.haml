@@ -1,8 +1,13 @@
-- if @name.present?
-  $("#gallery_name").css("border-color", "red")
-  $(".img-name-btn").attr('disabled','disabled');
-  $(".err-text").css("color", "red").html("Already taken");
+- if params[:name].present?
+  - if @name.present?
+    $("#gallery_name").css("border-color", "red")
+    $(".img-name-btn").attr('disabled','disabled');
+    $(".err-text").css("color", "red").html("Already exist"+"&nbsp;"+"<i class='fa fa-times' aria-hidden='true'></i>");
+  - else
+    $("#gallery_name").css("border-color", "green")
+    $(".img-name-btn").removeAttr('disabled');
+    $(".err-text").css("color", "green").html("Available"+"&nbsp;"+"<i class='fa fa-check' aria-hidden='true'></i>");
 - else
-  $("#gallery_name").css("border-color", "green")
-  $(".img-name-btn").removeAttr('disabled');
-  $(".err-text").css("color", "green").html("Available");
+  $("#gallery_name").css("border-color", "");
+  $(".err-text").html('');
+  $(".img-name-btn").attr('disabled','disabled');

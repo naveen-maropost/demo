@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :galleries do
     collection do
       post :validate_img_name
+      post :import
     end
   end
 end
