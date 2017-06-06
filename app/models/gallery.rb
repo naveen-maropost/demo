@@ -20,4 +20,10 @@ class Gallery < ApplicationRecord
     end
   end
 
+  def set_attributes(params)
+    self.remote_attachment_url = params[:gallery][:attachment] if params[:gallery] && params[:gallery][:attachment]
+    self.name = params[:gallery][:name] if params[:gallery] && params[:gallery][:name]
+    self.save
+  end
+
 end

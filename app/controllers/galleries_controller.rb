@@ -12,8 +12,12 @@ class GalleriesController < ApplicationController
       flash[:success] = 'Picture saved successfully!!!'
       redirect_to galleries_path
     else
-      render action: 'new'
+      render :new
     end
+  end
+
+  def show
+    @gallery = Gallery.find_by(id: params[:id])
   end
 
   def edit
@@ -26,12 +30,12 @@ class GalleriesController < ApplicationController
       flash[:success] = 'Picture Updated Successfully!!!'
       redirect_to galleries_path
     else
-      render action: 'edit'
+      render :edit
     end
   end
 
   def validate_img_name
-    @name = Gallery.where("name LIKE ?", "%#{params[:name]}%")
+    @name = Gallery.where(name: params[:name]).first
   end
 
   def destroy

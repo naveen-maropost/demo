@@ -20,11 +20,11 @@
 
   <div class="form-group">
     <%= f.label :password_confirmation, class: "control-label" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control', placeholder: "Enter Re-enter password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control', placeholder: "Re-enter password" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :current_password, class: "control-label" %> <i>(we need your old password to confirm your changes)</i><br />
+    <%= f.label :current_password, 'Old Password', class: "control-label" %> <i>(we need your old password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off", :class => 'form-control', placeholder: "Enter current password" %>
   </div>
 

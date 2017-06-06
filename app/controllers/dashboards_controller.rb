@@ -14,7 +14,7 @@ class DashboardsController < ApplicationController
       flash[:success] = 'Thank you for letting us know!!!'
       redirect_to root_path
     else
-      render action: 'contact_us'
+      render :contact_us
     end
   end
 

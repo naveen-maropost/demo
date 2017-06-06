@@ -1,0 +1,10 @@
+.container
+  .col-md-3.margin20
+    .card{:style => "width: 20rem;"}
+      %img.card-img-top{:alt => "Card image cap", :src => "#{@gallery.attachment.url(:large)}"}/
+      .card-block
+        %h4.card-title
+          = link_to @gallery.name, edit_gallery_path(@gallery, :format => :js), remote: true, title: "Click to Edit Name"
+        %a.btn.btn-primary.margin10{"data-confirm" => "Are you sure?", "data-method" => "delete", "data-remote" => "true", :href => "#{gallery_path(@gallery)}", :rel => "nofollow", title: "Click to Delete"} Delete
+
+.popup_data
