@@ -38,11 +38,13 @@ class Api::V1::UsersController < Api::V1::ApiController
 
   def forgot_password
     user = User.find_by_email(params[:email])
-    if user
-      user.send_reset_password_instructions
-      format.json { render json: {status:"Success", :code => 200 }.to_json }
-    else
-      format.json { render json: {status:"Failure", message: "Your email is does not exist, please sign up.", :code => 500 }.to_json }
+    respond_to do |format|
+      if user
+        user.send_reset_password_instructions
+        format.json { render json: {status:"Success", message: "We sent an email with reset password instruction", :code => 200 }.to_json }
+      else
+        format.json { render json: {status:"Failure", message: "Your email is does not exist, please sign up.", :code => 500 }.to_json }
+      end
     end
   end
 
