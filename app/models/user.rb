@@ -12,7 +12,7 @@ class User < ApplicationRecord
   end
 
   def password_required?
-    return false
+    !persisted? ? false : !password.nil? || !password_confirmation.nil?
   end
 
   def generate_password
