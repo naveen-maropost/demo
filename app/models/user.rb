@@ -8,7 +8,8 @@ class User < ApplicationRecord
   #before_save :ensure_authentication_token
 
   def send_welcome_email
-    UserMailer.welcome_email(self).deliver_now
+    WelcomeEmailWorker.perform_async(self.email, self.password)
+    #UserMailer.welcome_email(self).deliver_now
   end
 
   def password_required?

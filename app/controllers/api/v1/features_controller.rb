@@ -6,7 +6,8 @@ class Api::V1::FeaturesController < Api::V1::ApiController
     gallery.set_attributes(params)
     respond_to do |format|
       if gallery.persisted?
-        format.json { render json:  { name: gallery.name,
+        format.json { render json:  { id: gallery.id,
+                                      name: gallery.name,
                                       image_url: gallery.attachment.url,
                                       status:"Success",
                                       message: "Picture saved successfully!!!",

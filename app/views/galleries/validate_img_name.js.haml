@@ -1,6 +1,6 @@
 - if params[:name].present?
   - if @name.present?
-    $("#gallery_name").css("border-color", "red")
+    $("#gallery_name").css("border-color", "red");
     $(".img-name-btn").attr('disabled','disabled');
     $(".err-text").css("color", "red").html("Already exist"+"&nbsp;"+"<i class='fa fa-times' aria-hidden='true'></i>");
   - else

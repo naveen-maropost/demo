@@ -7,6 +7,6 @@ class ContactDetail < ApplicationRecord
   after_save :send_acknowledgement
 
   def send_acknowledgement
-    UserMailer.contact_us_acknowledgement(self).deliver_now
+    ContactusEmailWorker.perform_async(self.name, self.email)
   end
 end

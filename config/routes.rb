@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     collection do
       post :validate_img_name
       post :import
+      get :get_image_count
     end
   end
 
@@ -36,4 +37,7 @@ Rails.application.routes.draw do
       end
     end
   end
+
+    # having created corresponding controller and action
+    get '*path', to: 'errors#error_404', via: :all
 end

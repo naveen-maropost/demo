@@ -1,10 +1,12 @@
+//
 - @galleries.each do |gallery|
-  .col-md-3.margin20
-    = link_to gallery_path(gallery) do
-      .card{:style => "width: 20rem;"}
-        %img.card-img-top{:alt => "Card image cap", :src => "#{gallery.attachment.url(:medium)}"}/
-        .card-block
-          %h4.card-title
-            = link_to gallery.name, edit_gallery_path(gallery, :format => :js), remote: true, title: "Click to Edit Name"
-          %a.btn.btn-primary.margin10{"data-confirm" => "Are you sure?", "data-method" => "delete", "data-remote" => "true", :href => "#{gallery_path(gallery)}", :rel => "nofollow", title: "Click to Delete"} Delete
+  - cache gallery, expires_in: 5.minutes do
+    .col-md-3.margin20
+      = link_to gallery_path(gallery) do
+        .card{:style => "width: 20rem;"}
+          %img.card-img-top{:alt => "Card image cap", :src => "#{gallery.attachment.url(:medium)}"}/
+          .card-block
+            %h4.card-title
+              = link_to gallery.name, edit_gallery_path(gallery, :format => :js), remote: true, title: "Click to Edit Name"
+            %a.btn.btn-primary.margin10{"data-confirm" => "Are you sure?", "data-method" => "delete", "data-remote" => "true", :href => "#{gallery_path(gallery)}", :rel => "nofollow", title: "Click to Delete"} Delete
 .push.clearfix

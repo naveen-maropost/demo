@@ -61,3 +61,4 @@ gem 'carrierwave'
 gem "mini_magick"
 gem 'jquery-rails', '>= 1.0.3'
 gem 'kaminari'
+gem 'sidekiq'

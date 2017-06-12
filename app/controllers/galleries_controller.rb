@@ -47,6 +47,13 @@ class GalleriesController < ApplicationController
     @galleries = Gallery.all.order('created_at DESC').page(params[:page]).per(6)
   end
 
+  def get_image_count
+    @count = Gallery.count
+    respond_to do |format|
+       format.json { render json: @count }
+     end
+  end
+
   def import
     begin
       @resp = Gallery.import(params[:file])
