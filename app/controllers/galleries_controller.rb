@@ -44,7 +44,15 @@ class GalleriesController < ApplicationController
   end
 
   def get_gallery_collection
-    @galleries = Gallery.all.order('created_at DESC').page(params[:page]).per(6)
+    #@galleries = Gallery.all.order('created_at DESC').page(params[:page]).per(6)
+    galleries =  $redis.get("galleries")
+    if galleries.nil?
+      galleries = Gallery.all.order('created_at DESC').to_json
+      $redis.set("galleries", galleries)
+      $redis.expire("galleries",3.hour.to_i)
+    end
+    galleries = JSON.load (galleries)
+    @galleries = Kaminari.paginate_array(galleries).page(params[:page]).per(6)
   end
 
   def get_image_count

@@ -1,23 +1,36 @@
 %nav.navbar.navbar-inverse
-  #navbar.collapse.navbar-collapse
-    %ul.nav.navbar-nav
-      %li.active
-        %a{:href => "/"} Home
-      %li
-        = link_to "About Us", about_us_dashboards_path
-      %li
-        = link_to "Contact Us", contact_us_dashboards_path
-      %li
-        = link_to "Gallery", galleries_path
-    %p.navbar-text.pull-right
-      - if user_signed_in?
-        Logged in as
-        = succeed "." do
-          %strong= current_user.email
-        = link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'
-        |
-        = link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'
-      - else
-        = link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
-        |
-        = link_to "Login", new_user_session_path, :class => 'navbar-link'
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li.active
+          %a{:href => "/"} 
+            Home
+            %span.sr-only (current)
+        %li
+          = link_to "About Us", about_us_dashboards_path
+        %li
+          = link_to "Contact Us", contact_us_dashboards_path
+        %li
+          = link_to "Gallery", galleries_path
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li
+            %a{:href => "javascript:void(0)"}
+              = current_user.email
+          %li
+            = link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'
+          %li
+            = link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'
+        - else
+          %li
+            = link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
+          %li
+            = link_to "Login", new_user_session_path, :class => 'navbar-link'
+
+

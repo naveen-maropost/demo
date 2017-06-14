@@ -5,7 +5,13 @@ class Gallery < ApplicationRecord
   validates :attachment, presence: {message: "Please attach image."}
   validates :name, :format => { :with => /\A[A-Za-z ][A-Za-z ]*\z/,:message => "Only letters allowed" }
 
+  after_save :clear_cache
+
   require 'csv'
+
+  def clear_cache
+    $redis.del "galleries"
+  end
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|

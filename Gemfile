@@ -62,3 +62,8 @@ gem "mini_magick"
 gem 'jquery-rails', '>= 1.0.3'
 gem 'kaminari'
 gem 'sidekiq'
+gem 'rack-mini-profiler'
+gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'redis-rack-cache'
