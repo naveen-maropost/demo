@@ -1,1 +1,1 @@
-$('.img_data').html("#{escape_javascript(render 'galleries/image_data')}");
+$('.img_data').html("#{escape_javascript(render 'galleries/image_data', galleries: @galleries)}");

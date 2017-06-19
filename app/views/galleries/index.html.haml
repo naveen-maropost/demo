@@ -25,7 +25,11 @@
   $(document).ready(function(){
     $(".img-count").css("color", "yellow");
     $(".count-val").html('<img src="/assets/AjaxLoader.gif" />');
-    $(".footer").removeClass( "navbar-fixed-bottom" );
+    if ("#{@galleries.last_page?}" == "true") {
+      $(".footer").addClass("navbar-fixed-bottom");
+    } else {
+      $(".footer").removeClass("navbar-fixed-bottom");
+    }
     $.ajax({
       url:'/galleries/get_image_count',
       type:'get',

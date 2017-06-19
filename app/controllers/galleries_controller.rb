@@ -41,13 +41,28 @@ class GalleriesController < ApplicationController
   def destroy
     gallery = Gallery.find_by(id: params[:id])
     gallery.destroy if gallery
+    galleries =  $redis.get("galleries")
+    if galleries.nil?
+      galleries = Octopus.using(:shard_one) do
+        binding.pry
+        Gallery.all.order('created_at DESC').to_json
+      end
+      # galleries = Gallery.all.order('created_at DESC').to_json
+      $redis.set("galleries", galleries)
+      $redis.expire("galleries",3.hour.to_i)
+    end
+    galleries = JSON.load (galleries)
+    @galleries = Kaminari.paginate_array(galleries).page(params[:page]).per(6)
   end
 
   def get_gallery_collection
     #@galleries = Gallery.all.order('created_at DESC').page(params[:page]).per(6)
     galleries =  $redis.get("galleries")
     if galleries.nil?
-      galleries = Gallery.all.order('created_at DESC').to_json
+      galleries = Octopus.using(:shard_one) do
+        Gallery.all.order('created_at DESC').to_json
+      end
+      # galleries = Gallery.all.order('created_at DESC').to_json
       $redis.set("galleries", galleries)
       $redis.expire("galleries",3.hour.to_i)
     end

@@ -67,3 +67,4 @@ gem 'redis'
 gem 'redis-namespace'
 gem 'redis-rails'
 gem 'redis-rack-cache'
+gem "ar-octopus", ">= 0.9.0", git: "https://github.com/thiagopradi/octopus"

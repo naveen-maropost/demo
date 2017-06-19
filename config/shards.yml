@@ -1,0 +1,19 @@
+octopus:
+  replicated: true
+  environments:
+    - development
+    - production
+  development:
+    shard_one:
+      host: localhost
+      adapter: mysql2
+      username: root
+      password:
+      database: demo_development
+  production:
+    shard_one:
+      host: localhost
+      adapter: mysql2
+      username: root
+      password:
+      database: demo_production

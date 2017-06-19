@@ -39,5 +39,5 @@ Rails.application.routes.draw do
   end
 
     # having created corresponding controller and action
-    get '*path', to: 'errors#error_404', via: :all
+    #get '*path', to: 'errors#error_404', via: :all
 end

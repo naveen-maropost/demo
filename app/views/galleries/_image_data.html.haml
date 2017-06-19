@@ -1,5 +1,5 @@
 //
-- @galleries.each do |gallery|
+- galleries.each do |gallery|
   - cache gallery, expires_in: 5.minutes do
     .col-md-3.margin20
       = link_to gallery_path(gallery["id"]) do

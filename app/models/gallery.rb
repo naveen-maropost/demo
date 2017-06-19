@@ -6,6 +6,7 @@ class Gallery < ApplicationRecord
   validates :name, :format => { :with => /\A[A-Za-z ][A-Za-z ]*\z/,:message => "Only letters allowed" }
 
   after_save :clear_cache
+  after_destroy :clear_cache
 
   require 'csv'
 

@@ -1,17 +1,3 @@
-.container
-  .row
-    .error-template
-      %h1 Oops!
-      %h2 404 Not Found
-      .error-details
-        Sorry, an error has occured, Requested page not found!
-        %br/
-        !!! XML
-      .error-actions
-        %a.btn.btn-primary{:href => "#{root_path}"}
-          %i.fa.fa-home{"aria-hidden" => "true"}
-          Take Me Home
-        %a.btn.btn-default{:href => "#{contact_us_dashboards_path}"}
-          %i.fa.fa-envelope{"aria-hidden" => "true"}
-          Contact Support
+.rescue_err
+  = render "errors/rescue_error"
 
